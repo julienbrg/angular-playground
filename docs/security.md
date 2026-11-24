@@ -33,6 +33,7 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 ### Repository
 
 - **Secret scanning.** [GitHub secret scanning](https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning) is enabled, together with [push protection](https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection), which blocks pushes containing recognized credentials. [GitGuardian](https://www.gitguardian.com/) also scans every pull request for secrets.
+- **Private vulnerability reporting.** [Private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/working-with-repository-security-advisories/configuring-private-vulnerability-reporting-for-a-repository) is enabled, so security issues can be reported confidentially from the repository's Security tab (see [below](#reporting-a-vulnerability)).
 - **Build on every push.** [Vercel](https://vercel.com/) builds each pull request and deploys it to a preview URL, so a change that breaks the production build shows up before merge.
 
 ## Known gaps
@@ -43,11 +44,10 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 | [Dependabot alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) and security updates are off | New advisories against the dependency tree go unnoticed. |
 | No tests or audit in CI, and no [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) on `main` | Unit tests and `npm audit` don't run on pull requests, and nothing requires the checks to pass before a merge. |
 | No [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) or security headers | Vercel serves the bundle with its default headers. A `vercel.json` could add a CSP and the usual hardening headers. |
-| [Private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) is off | There's no confidential channel built into the repository. |
 
 ## Reporting a vulnerability
 
-Don't open a public issue. Contact the maintainer, [julienbrg](https://github.com/julienbrg), privately on GitHub, with a description of the issue and steps to reproduce it.
+Don't open a public issue. Report it privately through the repository's [Report a vulnerability](https://github.com/julienbrg/angular-playground/security/advisories/new) form, with a description of the issue and steps to reproduce it. The form needs a GitHub account, and the report stays private between you and the maintainer. See [privately reporting a security vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) for how it works.
 
 ## Further reading
 
