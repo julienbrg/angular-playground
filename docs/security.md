@@ -22,6 +22,7 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 ### Build
 
 - **Production by default.** `ng build` uses the production configuration, with optimization, output hashing on every file and no source maps, so shipped code isn't mapped back to the sources.
+- **No CLI analytics.** [Angular CLI analytics](https://angular.dev/cli/analytics) is set to `false` in `angular.json`, so running the CLI in this repository sends no usage data to Google.
 - **Clean tree.** [`.gitignore`](../.gitignore) keeps `dist/`, `node_modules/`, coverage reports and editor settings out of the repository.
 
 ### Dependencies
@@ -42,7 +43,6 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 | [Dependabot alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) and security updates are off | New advisories against the dependency tree go unnoticed. |
 | No tests or audit in CI, and no [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) on `main` | Unit tests and `npm audit` don't run on pull requests, and nothing requires the checks to pass before a merge. |
 | No [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) or security headers | Vercel serves the bundle with its default headers. A `vercel.json` could add a CSP and the usual hardening headers. |
-| [Angular CLI analytics](https://angular.dev/cli/analytics) is enabled in `angular.json` | CLI usage data is sent to Google from every machine that runs the CLI in this repository. |
 | [Private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) is off | There's no confidential channel built into the repository. |
 
 ## Reporting a vulnerability

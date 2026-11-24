@@ -8,3 +8,7 @@
 - Fixed header with "Angular Playground" title and a burger menu
 - `/new` page, linked from the menu
 - Security documentation in `docs/security.md`
+
+### Changed
+
+- Angular CLI analytics disabled in `angular.json`
