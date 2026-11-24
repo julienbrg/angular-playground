@@ -6,11 +6,11 @@ import { NewComponent } from './new/new.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'new', component: NewComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

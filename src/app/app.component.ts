@@ -5,7 +5,7 @@ import { Component, ElementRef, HostListener, ChangeDetectionStrategy } from '@a
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false
+  standalone: false,
 })
 export class AppComponent {
   menuOpen = false;
