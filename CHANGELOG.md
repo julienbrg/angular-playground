@@ -10,6 +10,8 @@
 - Security documentation in `docs/security.md`
 - Private vulnerability reporting enabled, linked from `docs/security.md`
 - `SECURITY.md` security policy pointing to the reporting form
+- GitHub Actions `ci` workflow on pull requests and pushes to `main`: frozen-lockfile install, `pnpm audit --prod --audit-level high`, headless unit tests and a production build, with a read-only token and SHA-pinned actions
+- `hug-flow` ruleset on `main`: pull request required, squash merges only, `ci` check required, force pushes and deletion blocked, no review approvals required
 
 ### Changed
 
