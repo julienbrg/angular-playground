@@ -10,20 +10,26 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it(`should have as title 'angular-playground'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-playground');
-  });
-
-  it('should render title', () => {
+  it('should render the brand and the menu button', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-playground app is running!');
+    expect(compiled.querySelector('.brand')?.textContent).toContain('Angular Playground');
+    expect(compiled.querySelector('button.burger')).toBeTruthy();
+  });
+
+  it('should open the menu with a link to /new', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.menu-content')).toBeNull();
+    (compiled.querySelector('button.burger') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    const link = compiled.querySelector('.menu-content a');
+    expect(link?.textContent).toContain('New');
+    expect(link?.getAttribute('href')).toBe('/new');
   });
 });
