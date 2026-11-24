@@ -1,5 +1,7 @@
 # Security policy
 
+See [docs/security.md](docs/security.md) for the practices in place and the known gaps.
+
 ## Reporting a vulnerability
 
 Don't open a public issue. Report it privately through the repository's [Report a vulnerability](https://github.com/julienbrg/angular-playground/security/advisories/new) form, with a description of the issue and steps to reproduce it.
@@ -7,5 +9,3 @@ Don't open a public issue. Report it privately through the repository's [Report 
 ## Supported versions
 
 Only the latest version on `main` receives fixes.
-
-See [docs/security.md](docs/security.md) for the practices in place and the known gaps.
