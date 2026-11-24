@@ -8,6 +8,8 @@
 - Fixed header with "Angular Playground" title and a burger menu
 - `/new` page, linked from the menu
 - Security documentation in `docs/security.md`
+- Private vulnerability reporting enabled, linked from `docs/security.md`
+- `SECURITY.md` security policy pointing to the reporting form
 
 ### Changed
 
