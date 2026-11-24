@@ -31,7 +31,8 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 
 ### Repository
 
-- **Secret scanning.** [GitHub secret scanning](https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning) is enabled, together with [push protection](https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection), which blocks pushes containing recognized credentials.
+- **Secret scanning.** [GitHub secret scanning](https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning) is enabled, together with [push protection](https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection), which blocks pushes containing recognized credentials. [GitGuardian](https://www.gitguardian.com/) also scans every pull request for secrets.
+- **Build on every push.** [Vercel](https://vercel.com/) builds each pull request and deploys it to a preview URL, so a change that breaks the production build shows up before merge.
 
 ## Known gaps
 
@@ -39,8 +40,8 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 | --- | --- |
 | Angular 16 is past its [support window](https://angular.dev/reference/releases) | [`npm audit`](https://docs.npmjs.com/cli/commands/npm-audit) reports 4 high-severity advisories in runtime packages: XSS and sanitization bypasses in `@angular/core` and `@angular/compiler`, an XSRF token leak in `@angular/common`, and SSR denial of service in `@angular/router`. Only a major upgrade fixes them. Counting dev tooling, the audit reports 49 advisories, 2 of them critical. |
 | [Dependabot alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) and security updates are off | New advisories against the dependency tree go unnoticed. |
-| No CI and no [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) on `main` | Nothing builds, tests or audits a change before it lands. |
-| No [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) or security headers | Defense in depth against injected scripts depends entirely on the host serving the bundle. |
+| No tests or audit in CI, and no [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) on `main` | Unit tests and `npm audit` don't run on pull requests, and nothing requires the checks to pass before a merge. |
+| No [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) or security headers | Vercel serves the bundle with its default headers. A `vercel.json` could add a CSP and the usual hardening headers. |
 | [Angular CLI analytics](https://angular.dev/cli/analytics) is enabled in `angular.json` | CLI usage data is sent to Google from every machine that runs the CLI in this repository. |
 | [Private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) is off | There's no confidential channel built into the repository. |
 
