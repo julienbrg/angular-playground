@@ -1,31 +1,46 @@
-# AngularPlayground
+# Angular Playground
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4 and now runs on Angular 22. It needs [Node.js](https://nodejs.org/) 22.22.3+ or 24.15.0+ and uses [pnpm](https://pnpm.io/).
+An Angular 22 application, deployed on Vercel.
+
+## Requirements
+
+- [Node.js](https://nodejs.org/) 22.22.3+ or 24.15.0+
+- [pnpm](https://pnpm.io/)
 
 ## Install
 
-Run `pnpm install` to install the dependencies.
+    pnpm install
 
-## Development server
+## Develop
 
-Run `pnpm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+    pnpm start
 
-## Code scaffolding
+The development server runs at http://localhost:4200/ and reloads on change.
 
-Run `pnpm ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Test
+
+    pnpm test --watch=false --browsers=ChromeHeadless
 
 ## Build
 
-Run `pnpm build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    pnpm build
 
-## Running unit tests
+The output is written to `dist/`.
 
-Run `pnpm test` to execute the unit tests via [Karma](https://karma-runner.github.io), or `pnpm test --watch=false --browsers=ChromeHeadless` for a single headless run.
+## Continuous integration
 
-## Running end-to-end tests
+Every pull request and every push to `main` runs a frozen-lockfile install, `pnpm audit --prod --audit-level high`, the unit tests and a production build.
+`main` accepts changes only through squash-merged pull requests whose `ci` check passes.
 
-Run `pnpm ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Security
 
-## Further help
+Practices and known gaps are listed in [docs/security.md](docs/security.md).
+Report a vulnerability privately through the
+[security advisory form](https://github.com/julienbrg/angular-playground/security/advisories/new),
+as described in [SECURITY.md](SECURITY.md).
 
-To get more help on the Angular CLI use `pnpm ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/cli) page.
+Vercel serves a Content Security Policy and hardening headers, defined in [vercel.json](vercel.json).
+
+## Contact
+
+Questions or feedback? Get in touch with [Julien](https://github.com/julienbrg): [https://julienberanger.com/contact](https://julienberanger.com/contact)
