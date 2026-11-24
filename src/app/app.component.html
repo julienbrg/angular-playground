@@ -14,9 +14,11 @@
       <span></span>
       <span></span>
     </button>
-    <ul id="main-menu" class="menu-content" *ngIf="menuOpen">
-      <li><a routerLink="/new" routerLinkActive="active" (click)="closeMenu()">New</a></li>
-    </ul>
+    @if (menuOpen) {
+      <ul id="main-menu" class="menu-content">
+        <li><a routerLink="/new" routerLinkActive="active" (click)="closeMenu()">New</a></li>
+      </ul>
+    }
   </nav>
 </header>
 <main id="main-content" class="main">

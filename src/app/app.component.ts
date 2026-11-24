@@ -1,9 +1,11 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class AppComponent {
   menuOpen = false;
