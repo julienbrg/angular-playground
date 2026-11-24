@@ -1,0 +1,4 @@
+dist
+.angular
+pnpm-lock.yaml
+CHANGELOG.md
