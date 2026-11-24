@@ -9,7 +9,7 @@ model: Claude Opus 5.5
 
 ## Scope
 
-Angular Playground is a client-only [single-page application](https://en.wikipedia.org/wiki/Single-page_application) built with [Angular](https://angular.dev/) 16. It has no backend, makes no HTTP calls, has no forms, stores nothing in the browser and holds no secrets. Its attack surface is limited to the static bundle and the dependencies that build it.
+Angular Playground is a client-only [single-page application](https://en.wikipedia.org/wiki/Single-page_application) built with [Angular](https://angular.dev/) 22. It has no backend, makes no HTTP calls, has no forms, stores nothing in the browser and holds no secrets. Its attack surface is limited to the static bundle and the dependencies that build it.
 
 ## Practices in place
 
@@ -27,7 +27,8 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 
 ### Dependencies
 
-- **Committed lockfile.** `package-lock.json` pins the full dependency tree, so every install resolves the same versions.
+- **Supported framework.** Angular 22 is the active major on the [release schedule](https://angular.dev/reference/releases), with long-term support until June 2028. [`pnpm audit --prod`](https://pnpm.io/cli/audit) reports no known vulnerabilities in runtime dependencies.
+- **Committed lockfile.** [pnpm](https://pnpm.io/) is the package manager, and `pnpm-lock.yaml` pins the full dependency tree, so every install resolves the same versions. `cli.packageManager` in `angular.json` makes `ng update` and `ng add` install with pnpm too.
 - **No accidental publishing.** [`"private": true`](https://docs.npmjs.com/cli/configuring-npm/package-json#private) in `package.json` stops the package from being published to the npm registry.
 
 ### Repository
@@ -40,9 +41,9 @@ Angular Playground is a client-only [single-page application](https://en.wikiped
 
 | Gap | Impact |
 | --- | --- |
-| Angular 16 is past its [support window](https://angular.dev/reference/releases) | [`npm audit`](https://docs.npmjs.com/cli/commands/npm-audit) reports 4 high-severity advisories in runtime packages: XSS and sanitization bypasses in `@angular/core` and `@angular/compiler`, an XSRF token leak in `@angular/common`, and SSR denial of service in `@angular/router`. Only a major upgrade fixes them. Counting dev tooling, the audit reports 49 advisories, 2 of them critical. |
+| Build and tests still run on the deprecated webpack-based builders (`@angular-devkit/build-angular:browser` and `:karma`) | Counting dev tooling, `pnpm audit` reports 3 advisories that don't ship in the bundle: a high and a moderate in `picomatch`, pulled in by the dev server, and a low in `@babel/core`, pulled in by test coverage. Migrating to the [application builder](https://angular.dev/tools/cli/build-system-migration) drops the webpack stack. |
 | [Dependabot alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) and security updates are off | New advisories against the dependency tree go unnoticed. |
-| No tests or audit in CI, and no [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) on `main` | Unit tests and `npm audit` don't run on pull requests, and nothing requires the checks to pass before a merge. |
+| No tests or audit in CI, and no [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) on `main` | Unit tests and `pnpm audit` don't run on pull requests, and nothing requires the checks to pass before a merge. |
 | No [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) or security headers | Vercel serves the bundle with its default headers. A `vercel.json` could add a CSP and the usual hardening headers. |
 
 ## Reporting a vulnerability
