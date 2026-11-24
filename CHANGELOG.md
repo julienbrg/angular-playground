@@ -14,3 +14,10 @@
 ### Changed
 
 - Angular CLI analytics disabled in `angular.json`
+- Angular upgraded from 16 to 22, one major at a time with `ng update`: TypeScript 6.0, zone.js 0.15, block control flow in templates, explicit zone change detection, and `baseUrl`/`downlevelIteration` removed from `tsconfig.json`
+- Package manager switched from npm to pnpm: `pnpm-lock.yaml` replaces `package-lock.json`, and `angular.json` sets `cli.packageManager` to `pnpm`
+- README commands use pnpm
+
+### Security
+
+- Runtime advisories in `@angular/core`, `@angular/compiler`, `@angular/common` and `@angular/router` fixed by the Angular upgrade; `pnpm audit --prod` reports no known vulnerabilities
